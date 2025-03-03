@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
 import { useState } from "react";
-import RestaurantLogin from "../_components/restaurantLogin";
-import RestaurantSignUp from "../_components/restaurantSignUp";
+import MyRestaurantLogin from "../_components/MyRestaurantLogin";
+import MyRestaurantSignUp from "../_components/MyRestaurantSignUp";
 
 const Page = () => {
   const [login, setLogin] = useState(true);
   return (
     <div className="container">
       <h1>Restaurant Login/Signup</h1>
-      {login ? <RestaurantLogin /> : <RestaurantSignUp />}
+      {login ? <MyRestaurantLogin /> : <MyRestaurantSignUp />}
       <div>
         <button
           className="btn-link"
