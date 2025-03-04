@@ -1,4 +1,3 @@
-
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 const MyRestaurantSignUp = () => {
@@ -10,8 +9,30 @@ const MyRestaurantSignUp = () => {
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [contactNumber, setContactNumber] = useState("");
+  const [errors, setErrors] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      setPasswordError(true);
+      return false;
+    } else {
+      setPasswordError(false);
+    }
+    if (
+      !email ||
+      !password ||
+      !restaurantName ||
+      !city ||
+      !address ||
+      !contactNumber
+    ) {
+      setErrors(true);
+      return false;
+    } else {
+      setErrors(false);
+    }
+
     console.log(email, password, restaurantName, city, address, contactNumber);
     let response = await fetch("http://localhost:3000/api/restaurant", {
       method: "POST",
@@ -27,7 +48,6 @@ const MyRestaurantSignUp = () => {
     response = await response.json();
     console.log(response);
     if (response.success) {
-      alert("Restaurant registered successfully !! ");
       console.log(response);
       const { result } = response;
       delete result.password;
@@ -48,6 +68,9 @@ const MyRestaurantSignUp = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {errors && !email && (
+            <span className="input-error">Plese enter valid Email address!</span>
+          )}
         </div>
         <div className="input-wrapper">
           <input
@@ -57,6 +80,14 @@ const MyRestaurantSignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {passwordError && (
+            <span className="input-error">
+              Password & confirm Password does not match!
+            </span>
+          )}
+          {errors && !password && (
+            <span className="input-error">Plese enter valid password!</span>
+          )}
         </div>
         <div className="input-wrapper">
           <input
@@ -66,6 +97,14 @@ const MyRestaurantSignUp = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
+          {passwordError && (
+            <span className="input-error">
+              Password & confirm Password does not match!
+            </span>
+          )}
+          {errors && !confirmPassword && (
+            <span className="input-error">Plese enter valid password!</span>
+          )}
         </div>
         <div className="input-wrapper">
           <input
@@ -75,6 +114,9 @@ const MyRestaurantSignUp = () => {
             value={restaurantName}
             onChange={(e) => setRestaurantName(e.target.value)}
           />
+          {errors && !restaurantName && (
+            <span className="input-error">Plese enter valid Name!</span>
+          )}
         </div>
         <div className="input-wrapper">
           <input
@@ -84,6 +126,9 @@ const MyRestaurantSignUp = () => {
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
+          {errors && !city && (
+            <span className="input-error">Plese enter valid City!</span>
+          )}
         </div>
         <div className="input-wrapper">
           <input
@@ -93,6 +138,9 @@ const MyRestaurantSignUp = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
+          {errors && !address && (
+            <span className="input-error">Plese enter valid Address!</span>
+          )}
         </div>
         <div className="input-wrapper">
           <input
@@ -102,6 +150,11 @@ const MyRestaurantSignUp = () => {
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
           />
+          {errors && !contactNumber && (
+            <span className="input-error">
+              Plese enter valid Contact Number!
+            </span>
+          )}
         </div>
         <div className="input-wrapper">
           <button className="button" onClick={handleSignUp}>
