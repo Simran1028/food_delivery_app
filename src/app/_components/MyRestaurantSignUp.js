@@ -1,5 +1,8 @@
+
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 const MyRestaurantSignUp = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -10,7 +13,7 @@ const MyRestaurantSignUp = () => {
 
   const handleSignUp = async () => {
     console.log(email, password, restaurantName, city, address, contactNumber);
-    let result = await fetch("http://localhost:3000/api/restaurant", {
+    let response = await fetch("http://localhost:3000/api/restaurant", {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -21,10 +24,15 @@ const MyRestaurantSignUp = () => {
         contactNumber,
       }),
     });
-    result = await result.json();
-    console.log(result);
-    if (result.success) {
+    response = await response.json();
+    console.log(response);
+    if (response.success) {
       alert("Restaurant registered successfully !! ");
+      console.log(response);
+      const { result } = response;
+      delete result.password;
+      localStorage.setItem("restaurantUser", JSON.stringify(result));
+      router.push("/restaurant/dashboard");
     }
   };
 

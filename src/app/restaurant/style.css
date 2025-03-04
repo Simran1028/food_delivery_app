@@ -9,6 +9,13 @@
     padding: 5px;
     list-style: none;
 }
+.header-list ul li button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: #493885;
+    font-size: 14px;
+}
 .header-list ul li a{
     text-decoration: none;
 }
