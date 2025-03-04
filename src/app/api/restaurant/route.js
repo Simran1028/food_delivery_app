@@ -8,3 +8,11 @@ export async function GET() {
   const data = await restaurantsSchema.find();
   return NextResponse.json({ result: data });
 }
+
+export async function POST(request){
+    let payload=await request.json();
+    await mongoose.connect(connectionStr);
+    const restaurant=new restaurantsSchema(payload)
+    const result=await restaurant.save();
+    return NextResponse.json({result,success:true})
+}
