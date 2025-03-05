@@ -7,9 +7,28 @@ const AddFoodItem = () => {
   const [imageURL, setImageURL] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleAddItem=()=>{
-    console.log(foodName,price,imageURL,description);
-  }
+  const handleAddItem = async () => {
+    console.log(foodName, price, imageURL, description);
+    let restro_id;
+    const restaurantData = JSON.parse(localStorage.getItem("restaurantUser"));
+    if (restaurantData) {
+      restro_id = restaurantData._id;
+    }
+    let response = await fetch("http://localhost:3000/api/restaurant/food", {
+      method: "POST",
+      body: JSON.stringify({
+        foodName,
+        price,
+        imageURL,
+        description,
+        restro_id,
+      }),
+    });
+    response = await response.json();
+    if (response.success) {
+      alert("Food Item added successfully");
+    }
+  };
 
   return (
     <div className="container">
