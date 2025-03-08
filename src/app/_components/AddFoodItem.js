@@ -6,9 +6,16 @@ const AddFoodItem = () => {
   const [price, setPrice] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState(false);
 
   const handleAddItem = async () => {
     console.log(foodName, price, imageURL, description);
+    if (!foodName || !price || !imageURL || !description) {
+      setError(true);
+      return false;
+    } else {
+      setError(false);
+    }
     let restro_id;
     const restaurantData = JSON.parse(localStorage.getItem("restaurantUser"));
     if (restaurantData) {
@@ -27,6 +34,8 @@ const AddFoodItem = () => {
     response = await response.json();
     if (response.success) {
       alert("Food Item added successfully");
+    }else{
+        alert("Food Item not added successfully");
     }
   };
 
@@ -41,6 +50,9 @@ const AddFoodItem = () => {
           value={foodName}
           onChange={(e) => setFoodName(e.target.value)}
         />
+        {error && !foodName && (
+          <span className="input-error">Add valid Food Name</span>
+        )}
       </div>
       <div className="input-wrapper">
         <input
@@ -50,6 +62,9 @@ const AddFoodItem = () => {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
+        {error && !price && (
+          <span className="input-error">Add valid Price</span>
+        )}
       </div>
       <div className="input-wrapper">
         <input
@@ -59,6 +74,9 @@ const AddFoodItem = () => {
           value={imageURL}
           onChange={(e) => setImageURL(e.target.value)}
         />
+        {error && !imageURL && (
+          <span className="input-error">Add valid Image URL</span>
+        )}
       </div>
       <div className="input-wrapper">
         <input
@@ -68,6 +86,9 @@ const AddFoodItem = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        {error && !description && (
+          <span className="input-error">Add valid Description</span>
+        )}
       </div>
       <div className="input-wrapper">
         <button className="button" onClick={handleAddItem}>

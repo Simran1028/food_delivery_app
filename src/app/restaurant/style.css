@@ -27,9 +27,3 @@
     background-color: #ffffff;
     text-align: center;
 }
-.input-error{
-    position: absolute;
-    color: red;
-    font-size: 13px;
-    padding: 8px;
-}

@@ -19,3 +19,9 @@
     cursor: pointer;
     background-color: transparent;
 }
+.input-error {
+    position: absolute;
+    color: red;
+    font-size: 13px;
+    padding: 8px;
+}
