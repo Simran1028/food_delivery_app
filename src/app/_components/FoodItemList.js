@@ -1,6 +1,8 @@
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const FoodItemList = () => {
+  let router = useRouter();
   const [foodItems, setFoodItems] = useState();
 
   useEffect(() => {
@@ -21,16 +23,18 @@ const FoodItemList = () => {
     }
   };
   let deleteFoodItems = async (id) => {
-    let response = await fetch("http://localhost:3000/api/restaurant/food/"
-      +id,{
-        method:'delete'
-      });
-      response=await response.json();
-      if (response.success){
-        loadFoodItems();
-      }else{
-        alert('Food Item not deleted.')
+    let response = await fetch(
+      "http://localhost:3000/api/restaurant/food/" + id,
+      {
+        method: "delete",
       }
+    );
+    response = await response.json();
+    if (response.success) {
+      loadFoodItems();
+    } else {
+      alert("Food Item not deleted.");
+    }
   };
   return (
     <>
@@ -58,8 +62,12 @@ const FoodItemList = () => {
                   <img src={item.imageURL}></img>
                 </td>
                 <td>
-                  <button>Edit</button>
-                  <button onClick={()=>deleteFoodItems(item._id)}>Delete</button>
+                  <button onClick={() => router.push("dashboard/" + item._id)}>
+                    Edit
+                  </button>
+                  <button onClick={() => deleteFoodItems(item._id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
