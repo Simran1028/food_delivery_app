@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const AddFoodItem = () => {
+const AddFoodItem = (props) => {
   const [foodName, setFoodName] = useState("");
   const [price, setPrice] = useState("");
   const [imageURL, setImageURL] = useState("");
@@ -34,6 +34,7 @@ const AddFoodItem = () => {
     response = await response.json();
     if (response.success) {
       alert("Food Item added successfully");
+      props.setAddItem(false);
     }else{
         alert("Food Item not added successfully");
     }
