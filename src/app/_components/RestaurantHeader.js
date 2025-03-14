@@ -24,7 +24,7 @@ const RestaurantHeader = () => {
   return (
     <div className="header-wrapper">
       <div>
-        <img style={{ width: 100 }} src="delivery.jpg" />
+        <img style={{ width: 100 }} src="/delivery.jpg" />
       </div>
       <div className="header-list">
         <ul>
