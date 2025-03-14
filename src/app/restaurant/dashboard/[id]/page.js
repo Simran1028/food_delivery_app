@@ -20,6 +20,23 @@ const EditFoodItem = () => {
     } else {
       setError(false);
     }
+
+    let response=await fetch("http://localhost:3000/api/restaurant/food/edit/" +params.id,{
+      method: "PUT",
+      body: JSON.stringify({
+        foodName,
+        price,
+        imageURL,
+        description,
+      }),
+     
+    });
+    response=await response.json();
+    if(response.success){
+      router.push(("../dashboard"))
+    }else{
+      alert("Failed to update Food Item.");
+    }
   };
 
   useEffect(() => {
@@ -90,7 +107,7 @@ const EditFoodItem = () => {
       </div>
       <div className="input-wrapper">
         <button className="button" onClick={handleEditItem}>
-          Add Food Item
+          Edit Food Item
         </button>
       </div>
       <div className="input-wrapper">
