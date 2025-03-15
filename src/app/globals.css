@@ -1,69 +1,120 @@
-.header-wrapper{
+*:focus {
+    outline: none;
+}
+
+.header-wrapper {
     display: flex;
     justify-content: space-between;
 }
-.header-list ul{
+
+.header-list ul {
     display: flex;
 }
-.header-list ul li{
+
+.header-list ul li {
     padding: 5px;
     list-style: none;
 }
-.header-list ul li button{
+
+.header-list ul li button {
     border: none;
     background-color: transparent;
     cursor: pointer;
     color: #493885;
     font-size: 14px;
 }
-.header-list ul li a{
+
+.header-list ul li a {
     text-decoration: none;
 }
+
 .footer-wrapper {
     position: fixed;
     bottom: 0;
-    width:100%;
+    width: 100%;
     font-size: 14px;
     background-color: #ffffff;
     text-align: center;
 }
 
 
-.input-wrapper{
+.input-wrapper {
     margin: 10px;
 }
-.input-field{
-    height:30px;
-    width:200px;
-}
-.button{
+
+.input-field {
     height: 30px;
-     width: 200px;
+    width: 200px;
 }
-.container{
+
+.button {
+    height: 30px;
+    width: 200px;
+}
+
+.container {
     text-align: center;
 }
-.btn-link{
+
+.btn-link {
     margin: 20px;
-    color:rgb(0, 174, 255);
+    color: rgb(0, 174, 255);
     border: none;
     cursor: pointer;
     background-color: transparent;
 }
+
 .input-error {
     position: absolute;
     color: red;
     font-size: 13px;
     padding: 8px;
 }
-table ,td,th{
+
+table,
+td,
+th {
     border: 2px solid black;
     border-collapse: collapse;
     padding: 10px;
 }
-table td button{
+
+table td button {
     margin: 5px;
 }
-table img{
+
+table img {
     width: 80px;
+}
+
+.main-page-banner {
+    background-image: url('https://i.cbc.ca/1.7428441.1736538341!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/1384617341.jpg?im=Resize%3D780');
+    background-color: rgb(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    padding: 30px;
+    height: 230px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.input-wrapper {
+    background-color: #ffffff;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: auto;
+    width: 70%;
+}
+.select-input{
+    height:40px;
+    border: none;
+    width: 30%;
+    padding-left: 15px;
+}
+.search-input{
+    height:40px;
+    border: none;
+    width: 65%;
+    border-left:1px solid #ccc;
+    padding-left: 15px;
 }
