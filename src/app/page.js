@@ -6,11 +6,13 @@ import RestaurantFooter from "./_components/RestaurantFooter";
 
 export default function Home() {
   const [location, setLocation] = useState([]);
+  const [restaurant, setRestaurant] = useState([]);
   const [selectLocation, setSelectedLocation] = useState('');
   const [showLocation, setShowLocation] = useState(false);
 
   useEffect(() => {
     loadLocation();
+    loadRestaurant();
   }, [])
 
   const loadLocation = async () => {
@@ -20,10 +22,24 @@ export default function Home() {
       setLocation(response.result);
     }
   }
+  const loadRestaurant = async (params) => {
+    let url = "http://localhost:3000/api/customer";
+    if (params?.location) {
+      url = url + "?location=" + params.location;
+    } else if (params?.restaurant) {
+      url = url + "?restaurant=" + params.restaurant;
+    }
+    let response = await fetch(url);
+    response = await response.json();
+    if (response.success) {
+      setRestaurant(response.result);
+    }
 
+  }
   const handleItem = (item) => {
     setSelectedLocation(item);
     setShowLocation(false);
+    loadRestaurant({ location: item })
   }
   return (
     <div>
@@ -40,8 +56,24 @@ export default function Home() {
               ))
             }
           </ul>
-          <input type="text" className="search-input" placeholder="Enter food or Restaurant Name " />
+          <input type="text" className="search-input" placeholder="Enter food or Restaurant Name " onChange={(e) => loadRestaurant({ restaurant: e.target.value })} />
         </div>
+      </div>
+      <div className="restaurant-list">
+        {restaurant.map((item) => (
+          <div className="restaurant-wrapper">
+            <div className="heading-wrapper">
+              <h3>{item.restaurantName}</h3>
+
+            </div>
+            <div className="address-wrapper">
+              <div>Contact:{item.contactNumber}</div>
+              <div>Email:{item.email}</div>
+              <div>{item.address}</div>
+              <div>{item.city}</div>
+            </div>
+          </div>
+        ))}
       </div>
       <RestaurantFooter />
     </div>
