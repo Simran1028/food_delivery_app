@@ -63,7 +63,7 @@ export default function Home() {
       </div>
       <div className="restaurant-list">
         {restaurant.map((item,index) => (
-          <div  key={item.id || index} onClick={()=>router.push('explore/'+item.restaurantName)} className="restaurant-wrapper">
+          <div  key={item.id || index} onClick={()=>router.push('explore/'+item.restaurantName+'?id='+item._id)} className="restaurant-wrapper">
             <div className="heading-wrapper">
               <h3>{item.restaurantName}</h3>
 
