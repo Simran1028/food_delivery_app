@@ -2,6 +2,7 @@
 import CustomerHeader from "@/app/_components/CustomerHeader";
 import { useEffect, useState, use } from "react";
 import { useSearchParams } from "next/navigation";
+import RestaurantFooter from "@/app/_components/RestaurantFooter";
 
 const Details = ({ params: paramsPromise }) => {
     const params = use(paramsPromise);
@@ -33,22 +34,32 @@ const Details = ({ params: paramsPromise }) => {
             <div className="restaurant-page-banner">
                 <h1>{decodeURI(name)}</h1>
             </div>
-            <div>
+            <div className="detail-wrapper">
                 <h3>{restaurantDetails?.email}</h3>
                 <h3>{restaurantDetails?.contactNumber}</h3>
                 <h3>{restaurantDetails?.address}</h3>
                 <h3>{restaurantDetails?.city}</h3>
             </div>
-            <div>
-                {foodItems.map((item, index) => (
-                    <div>
-                        <div key={index}>{item.name}</div>
-                        <div>{item.price}</div>
-                        <div>{item.description}</div>
-                        <div><img style={{ width: 100 }} src={item.imageURL} /></div>
+            <div className="food-item-wrapper">
+                {foodItems.length>0?foodItems.map((item, index) => (
+                    <div className="list-item" key={index}>
+                        <div className="image-container">
+                            <img src={item.imageURL} alt={item.name} />
+                        </div>
+                        <div className="food-info">
+                            <h3 className="food-name">{item.name}</h3>
+                            <p className="food-price">₹{item.price}</p>
+                            <p className="description">{item.description}</p>
+                            <button className="add-to-cart-btn">Add to Cart</button>
+                        </div>
                     </div>
-                ))}
+                ))
+            :
+            <h1>No food item added for now !!</h1>
+            }
             </div>
+
+            <RestaurantFooter />
         </div>
     )
 }
