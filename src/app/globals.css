@@ -162,3 +162,17 @@ table img {
     cursor: pointer;
     word-wrap: break-word
 }
+
+.restaurant-page-banner {
+    background-image: url('https://i.cbc.ca/1.7428441.1736538341!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/1384617341.jpg?im=Resize%3D780');
+    background-color: rgb(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    padding: 30px;
+    height: 230px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.restaurant-page-banner h1 {
+    font-size: 65px;
+}

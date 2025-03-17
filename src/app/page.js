@@ -2,9 +2,11 @@
 import { useEffect, useState } from "react";
 import CustomerHeader from "./_components/CustomerHeader";
 import RestaurantFooter from "./_components/RestaurantFooter";
+import { useRouter } from "next/navigation";
 
 
 export default function Home() {
+  const router=useRouter();
   const [location, setLocation] = useState([]);
   const [restaurant, setRestaurant] = useState([]);
   const [selectLocation, setSelectedLocation] = useState('');
@@ -60,8 +62,8 @@ export default function Home() {
         </div>
       </div>
       <div className="restaurant-list">
-        {restaurant.map((item) => (
-          <div className="restaurant-wrapper">
+        {restaurant.map((item,index) => (
+          <div  key={item.id || index} onClick={()=>router.push('explore/'+item.restaurantName)} className="restaurant-wrapper">
             <div className="heading-wrapper">
               <h3>{item.restaurantName}</h3>
 
